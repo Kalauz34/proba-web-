@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Az én weboldalam</title>
+  <meta name="description" content="Egyszerű, ingyenes egyoldalas weboldal sablon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card:#121a31;
+      --muted:#99a2c2;
+      --primary:#6ea8fe;
+      --ring: rgba(110,168,254,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial, "Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:#eaf0ff}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:linear-gradient(180deg, rgba(11,16,32,.9) 0, rgba(11,16,32,.7) 100%);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 210deg,#6ea8fe,#8ed0ff,#b69cff,#6ea8fe);box-shadow:0 0 0 6px rgba(110,168,254,.12)}
+    .links{display:flex;gap:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#0b1020;border:none;border-radius:14px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:0 10px 30px -10px var(--ring)}
+    .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
+
+    .hero{padding:72px 0 36px}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:36px}
+    .h1{font-size: clamp(28px, 5vw, 52px);line-height:1.1;margin:0 0 12px}
+    .lead{font-size: clamp(16px, 2.3vw, 20px);color:var(--muted);margin:0 0 22px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:22px;padding:22px;box-shadow:0 10px 50px -25px rgba(0,0,0,.6)}
+    .pill{display:inline-block;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .kpi{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px}
+    .kpi .num{font-size:24px;font-weight:800}
+
+    section{padding:64px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .feature{padding:18px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .feature h3{margin:12px 0 8px}
+    .muted{color:var(--muted)}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+
+    form{display:grid;gap:12px}
+    input, textarea{width:100%;background:#0e1529;border:1px solid rgba(255,255,255,.08);color:#eaf0ff;border-radius:12px;padding:12px}
+    input:focus, textarea:focus{outline:2px solid var(--ring);border-color:transparent}
+
+    footer{padding:48px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><img src="logo.png" alt="Logó" style="height:40px; border-radius:8px;"><span>Shadow City RP</span></div>
+      <nav class="links">
+        <a href="#rolam">Rólam</a>
+        <a href="#szolg">Szolgáltatások</a>
+        <a href="#referenciak">Referenciák</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+        <a class="btn" href="#kapcsolat">Ajánlatot kérek</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div>
+          <span class="pill">Gyors · Reszponzív · Ingyenes hosztolás</span>
+          <h1 class="h1">Készítünk neked egy letisztult, gyors weboldalt – teljesen ingyenes eszközökkel.</h1>
+          <p class="lead">Ez a sablon kiváló indulás vállalkozóknak, portfólióhoz vagy egyetlen termék bemutatásához. Szerkeszd a szöveget, tölts fel képeket, és tedd közzé percek alatt.</p>
+          <div class="cta">
+            <a class="btn" href="#kapcsolat">Vedd fel velem a kapcsolatot</a>
+            <a href="#referenciak">Nézd meg a mintákat →</a>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="num">100%</div><div class="muted">Mobilbarát</div></div>
+            <div class="kpi"><div class="num">0 Ft</div><div class="muted">Hosztolás (GitHub Pages)</div></div>
+            <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h2 style="margin:0 0 10px">Gyors bemutatkozás</h2>
+          <p class="muted">Itt mutatkozz be 2-3 mondatban: miben segítesz, kiknek, és mi a különlegességed.</p>
+          <ul>
+            <li>✅ 3 fő előny felsorolása</li>
+            <li>✅ Rövid, érthető nyelvezet</li>
+            <li>✅ Egy erős cselekvésre ösztönzés</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="rolam">
+      <h2>Rólam</h2>
+      <div class="grid-2">
+        <div class="feature">
+          <h3>Küldetésem</h3>
+          <p class="muted">Írj 3-4 mondatot arról, hogy milyen problémát oldasz meg az ügyfeleidnek.</p>
+        </div>
+        <div class="feature">
+          <h3>Tapasztalat</h3>
+          <p class="muted">Pár konkrétum: évek száma, főbb projektek, iparágak.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="szolg">
+      <h2>Szolgáltatások</h2>
+      <div class="grid-3">
+        <div class="feature">
+          <h3>Szolgáltatás #1</h3>
+          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
+        </div>
+        <div class="feature">
+          <h3>Szolgáltatás #2</h3>
+          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
+        </div>
+        <div class="feature">
+          <h3>Szolgáltatás #3</h3>
+          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="referenciak">
+      <h2>Referenciák</h2>
+      <div class="grid-3">
+        <div class="feature">
+          <strong>Projekt neve</strong>
+          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
+        </div>
+        <div class="feature">
+          <strong>Projekt neve</strong>
+          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
+        </div>
+        <div class="feature">
+          <strong>Projekt neve</strong>
+          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="kapcsolat" class="card">
+      <h2>Kapcsolat</h2>
+      <p class="muted">Küldj üzenetet az alábbi űrlapon vagy írj közvetlenül: <a href="mailto:hello@example.com">hello@example.com</a></p>
+      <form action="mailto:hello@example.com" method="post" enctype="text/plain">
+        <input name="name" placeholder="Neved" required />
+        <input name="email" type="email" placeholder="Email címed" required />
+        <textarea name="message" rows="5" placeholder="Üzeneted"></textarea>
+        <button class="btn" type="submit">Üzenet küldése</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> – Az én brandem. Minden jog fenntartva.
+    </div>
+  </footer>
+
+  <script>
+    // év automatikus
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // sima görgetés a navigáció linkekhez
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth'});
+        }
+      })
+    })
+  </script>
+</body>
+</html>
