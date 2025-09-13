@@ -10,21 +10,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #0b1020;
-      --card:#121a31;
+      --card:#d21af3;
       --muted:#99a2c2;
-      --primary:#6ea8fe;
-      --ring: rgba(110,168,254,.45);
+      --primary:#d21af3;
+      --ring: rgb(238, 255, 0);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial, "Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:#eaf0ff}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: url('hatter.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color:#eaf0ff
+    }
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:linear-gradient(180deg, rgba(11,16,32,.9) 0, rgba(11,16,32,.7) 100%);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
-    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 210deg,#6ea8fe,#8ed0ff,#b69cff,#6ea8fe);box-shadow:0 0 0 6px rgba(110,168,254,.12)}
     .links{display:flex;gap:18px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#0b1020;border:none;border-radius:14px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:0 10px 30px -10px var(--ring)}
     .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
@@ -42,7 +47,7 @@
     section{padding:64px 0}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    .feature{padding:18px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+    .feature{padding:18px;border-radius:18px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.06)}
     .feature h3{margin:12px 0 8px}
     .muted{color:var(--muted)}
     .cta{display:flex;gap:12px;flex-wrap:wrap}
@@ -63,10 +68,10 @@
 <body>
   <header>
     <div class="container nav">
-     <div class="brand">
-  <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
-  <span>Shadow City RP</span>
-</div>
+      <div class="brand">
+        <img src="logo.png" alt="Logó" style="height:40px; border-radius:8px;">
+        <span>Shadow City RP</span>
+      </div>
       <nav class="links">
         <a href="#Shadow City röl">Shadow City szerveröl</a>
         <a href="#szolg">Szolgáltatások</a>
@@ -78,129 +83,49 @@
   </header>
 
   <main class="container">
+    <!-- Hero szekció -->
     <section class="hero" id="home">
       <div class="hero-grid">
         <div>
           <span class="pill">Gyors · Reszponzív · Ingyenes hosztolás</span>
-          <h1 class="h1">Shadow City RP – A te történeted itt kezdődik!
-          Üdvözlünk a Shadow City RP világában, ahol a képzelet és a valóság határai összemosódnak!.</h1>
-          <p class="lead">Mit kínálunk?
-Hiteles és élvezetes RP élményt
-
-Aktív és barátságos közösséget
-
-Egyedi script-eket és rendszeresen frissülő tartalmat
-
-Profi adminisztrációt és segítőkész staff csapatot
-
-🚓🚑💼 Legyen szó bűnözésről, rendvédelemről, mentőszolgálatról vagy civil élet formálásáról – nálunk mindenki megtalálja a helyét. A város csak rád vár, hogy felfedezd és kialakítsd a saját történeted.</p>
+          <h1 class="h1">Shadow City RP – A te történeted itt kezdődik!</h1>
+          <p class="lead">Üdvözlünk a Shadow City RP világában, ahol a képzelet és a valóság határai összemosódnak! ...</p>
           <div class="cta">
             <a class="btn" href="#kapcsolat">Vedd fel velem a kapcsolatot</a>
             <a href="#referenciak">Nézd meg a mintákat →</a>
           </div>
-          <div class="kpis">
-            <div class="kpi"><div class="num">100%</div><div class="muted">Mobilbarát</div></div>
-            <div class="kpi"><div class="num">0 Ft</div><div class="muted">Hosztolás (GitHub Pages)</div></div>
-            <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
-          </div>
-        </div>
-        <div class="card">
-          <h2 style="margin:0 0 10px">Gyors bemutatkozás</h2>
-          <p class="muted">Itt mutatkozz be 2-3 mondatban: miben segítesz, kiknek, és mi a különlegességed.</p>
-          <ul>
-            <li>✅ </li>
-            <li>✅ </li>
-            <li>✅ </li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <section id="Shadow City szerveröl">
-      <h2>Rólam</h2>
-      <div class="grid-2">
-        <div class="feature">
-          <h3>Küldetésem</h3>
-          <p class="muted">Írj 3-4 mondatot arról, hogy milyen problémát oldasz meg az ügyfeleidnek.</p>
-        </div>
-        <div class="feature">
-          <h3>Tapasztalat</h3>
-          <p class="muted">Pár konkrétum: évek száma, főbb projektek, iparágak.</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- További szekciók ugyanúgy maradnak -->
     <section id="szolg">
       <h2>Szolgáltatások</h2>
       <div class="grid-3">
-        <div class="feature">
-          <h3>Szolgáltatás #1</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-        <div class="feature">
-          <h3>Szolgáltatás #2</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-        <div class="feature">
-          <h3>Szolgáltatás #3</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="referenciak">
-      <h2>Referenciák</h2>
-      <div class="grid-3">
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
+        <div class="feature"><h3>Szolgáltatás #1</h3><p class="muted">Leírás...</p></div>
+        <div class="feature"><h3>Szolgáltatás #2</h3><p class="muted">Leírás...</p></div>
+        <div class="feature"><h3>Szolgáltatás #3</h3><p class="muted">Leírás...</p></div>
       </div>
     </section>
 
     <section id="kapcsolat" class="card">
       <h2>Kapcsolat</h2>
-      <p class="muted">Küldj üzenetet az alábbi űrlapon vagy írj közvetlenül: <a href="mailto:hello@example.com">hello@example.com</a></p>
-      <form action="mailto:hello@example.com" method="post" enctype="text/plain">
-        <input name="name" placeholder="Neved" required />
-        <input name="email" type="email" placeholder="Email címed" required />
-        <textarea name="message" rows="5" placeholder="Üzeneted"></textarea>
-        <button class="btn" type="submit">Üzenet küldése</button>
-      </form>
+      <p class="muted">Írj nekünk: <a href="mailto:hello@example.com">hello@example.com</a></p>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      © <span id="y"></span> – Az én brandem. Minden jog fenntartva.
+      © <span id="y"></span> – Shadow City RP. Minden jog fenntartva.
     </div>
   </footer>
 
   <script>
-    // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés a navigáció linkekhez
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        const el = document.querySelector(id);
-        if(el){
-          e.preventDefault();
-          window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth'});
-        }
-      })
-    })
   </script>
 </body>
 </html>
+
 
 
 
