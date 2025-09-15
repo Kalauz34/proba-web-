@@ -17,7 +17,19 @@
       --ring: rgba(110,168,254,.45);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:#eaf0ff}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background-color:var(--bg);
+      color:#eaf0ff;
+
+      /* 🔹 két oldalsó kép beállítása */
+      background-image: url("images/baloldal.png"), url("images/jobboldal.png");
+      background-position: left top, right top;
+      background-repeat: repeat-y, repeat-y;
+      background-size: 200px auto, 200px auto;
+    }
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:24px}
@@ -58,73 +70,15 @@
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
     }
-
-    /* --- Slider fix méret, nem ugrál --- */
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      max-width: 800px; /* szélesség */
-      height: 400px;    /* magasság */
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-    .hero-slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .hero-slider img.active {
-      opacity: 1;
-    }
-    .hero-slider .nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 6px 12px;
-      cursor: pointer;
-      z-index: 10;
-      border-radius: 50%;
-    }
-    .hero-slider .nav.prev { left: 10px; }
-    .hero-slider .nav.next { right: 10px; }
-    .hero-slider .dots {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 6px;
-    }
-    .hero-slider .dots button {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(255,255,255,0.5);
-      cursor: pointer;
-    }
-    .hero-slider .dots button.active {
-      background: white;
-    }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="brand">
-        <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
-        <span>Shadow City RP</span>
-      </div>
+     <div class="brand">
+  <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
+  <span>Shadow City RP</span>
+</div>
       <nav class="links">
         <a href="#Shadow City röl">Shadow City szerveröl</a>
         <a href="#szolg">Szolgáltatások</a>
@@ -162,16 +116,14 @@ Profi adminisztrációt és segítőkész staff csapatot
             <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
           </div>
         </div>
-
-        <!-- SLIDER fent, jobb oldalon -->
-        <div class="hero-slider">
-          <img src="images/Gtakep1.jpg" alt="Slide 1" class="active">
-          <img src="images/Gtakep2.jpg" alt="Slide 2">
-          <img src="images/Gtakep3.jpg" alt="Slide 3">
-          <img src="images/Gtakep4.jpg" alt="Slide 4">
-          <button class="nav prev" aria-label="Előző">‹</button>
-          <button class="nav next" aria-label="Következő">›</button>
-          <div class="dots"></div>
+        <div class="card">
+          <h2 style="margin:0 0 10px">Gyors bemutatkozás</h2>
+          <p class="muted">Itt mutatkozz be 2-3 mondatban: miben segítesz, kiknek, és mi a különlegességed.</p>
+          <ul>
+            <li>✅ </li>
+            <li>✅ </li>
+            <li>✅ </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -247,7 +199,7 @@ Profi adminisztrációt és segítőkész staff csapatot
   <script>
     // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés
+    // sima görgetés a navigáció linkekhez
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href');
@@ -258,42 +210,11 @@ Profi adminisztrációt és segítőkész staff csapatot
         }
       })
     })
-
-    // slider logika
-    const slider = document.querySelector('.hero-slider');
-    const slides = slider.querySelectorAll('img');
-    const prevBtn = slider.querySelector('.prev');
-    const nextBtn = slider.querySelector('.next');
-    const dotsWrap = slider.querySelector('.dots');
-    let index = 0, timer;
-
-    slides.forEach((_, i)=>{
-      const dot = document.createElement('button');
-      dot.addEventListener('click', ()=>go(i));
-      dotsWrap.appendChild(dot);
-    });
-
-    function render(){
-      slides.forEach((s, i)=>s.classList.toggle('active', i===index));
-      dotsWrap.querySelectorAll('button').forEach((d,i)=>d.classList.toggle('active', i===index));
-    }
-    function go(n){ index=(n+slides.length)%slides.length; render(); restart();}
-    function next(){go(index+1);}
-    function prev(){go(index-1);}
-    function start(){timer=setInterval(next,4000);}
-    function stop(){clearInterval(timer);}
-    function restart(){stop();start();}
-
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-
-    render();
-    start();
   </script>
 </body>
 </html>
+
+
 
 
 
