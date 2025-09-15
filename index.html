@@ -24,7 +24,6 @@
     header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:linear-gradient(180deg, rgba(11,16,32,.9) 0, rgba(11,16,32,.7) 100%);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
-    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 210deg,#6ea8fe,#8ed0ff,#b69cff,#6ea8fe);box-shadow:0 0 0 6px rgba(110,168,254,.12)}
     .links{display:flex;gap:18px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;gap:10px;background:var(--primary);color:#0b1020;border:none;border-radius:14px;padding:10px 16px;font-weight:700;cursor:pointer;box-shadow:0 10px 30px -10px var(--ring)}
     .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
@@ -59,48 +58,25 @@
       .grid-2{grid-template-columns:1fr}
     }
 
-    /* --- KÉPCSÚSZKA A HERO TETEJÉN --- */
-    .hero-slider{
-      position: relative;
-      height: 300px;             /* itt állítsd a magasságot */
-      border-radius: 18px;
-      overflow: hidden;
-      margin-bottom: 22px;
-      background: rgba(0,0,0,.15);
-    }
-    .hero-slider img{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      opacity:0; transition:opacity .6s ease;
-    }
-    .hero-slider img.active{ opacity:1; }
-    .hero-slider .nav{
-      position:absolute; top:50%; transform:translateY(-50%);
-      border:none; background:rgba(0,0,0,.35); color:#fff;
-      width:40px; height:40px; border-radius:999px; cursor:pointer;
-      font-size:24px; line-height:40px;
-    }
-    .hero-slider .prev{ left:12px; }
-    .hero-slider .next{ right:12px; }
-    .hero-slider .dots{
-      position:absolute; left:50%; bottom:12px; transform:translateX(-50%);
-      display:flex; gap:8px;
-    }
-    .hero-slider .dots button{
-      width:10px; height:10px; border-radius:999px; border:none; cursor:pointer;
-      background:rgba(255,255,255,.5);
-    }
-    .hero-slider .dots button.active{ background:#fff; }
+    /* slider */
+    .hero-slider{position:relative;overflow:hidden;border-radius:12px;margin-bottom:20px}
+    .hero-slider img{width:100%;display:none;border-radius:12px}
+    .hero-slider img.active{display:block}
+    .hero-slider .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);color:#fff;border:none;padding:8px 12px;cursor:pointer;font-size:20px;border-radius:6px}
+    .hero-slider .prev{left:10px}
+    .hero-slider .next{right:10px}
+    .hero-slider .dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+    .hero-slider .dots button{width:10px;height:10px;border-radius:50%;border:none;background:#aaa;cursor:pointer}
+    .hero-slider .dots button.active{background:var(--primary)}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
      <div class="brand">
-  <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
-  <span>Shadow City RP</span>
-</div>
+        <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
+        <span>Shadow City RP</span>
+      </div>
       <nav class="links">
         <a href="#Shadow City röl">Shadow City szerveröl</a>
         <a href="#szolg">Szolgáltatások</a>
@@ -112,20 +88,14 @@
   </header>
 
   <main class="container">
+    <!-- SLIDER -->
+    <div class="hero-slider">
+      <button class="nav prev" aria-label="Előző">‹</button>
+      <button class="nav next" aria-label="Következő">›</button>
+      <div class="dots"></div>
+    </div>
+
     <section class="hero" id="home">
-
-      <!-- ===== KÉPCSÚSZKA KEZDETE ===== -->
-      <div class="hero-slider">
-        <img src="images/Gtakep1.png" alt="Slide 1" class="active">
-        <img src="images/Gtakep2.jpg" alt="Slide 2">
-        <img src="images/Gtakep3.png" alt="Slide 3">
-        <img src="images/Gtakep4.png" alt="Slide 4">
-        <button class="nav prev" aria-label="Előző">‹</button>
-        <button class="nav next" aria-label="Következő">›</button>
-        <div class="dots"></div>
-      </div>
-      <!-- ===== KÉPCSÚSZKA VÉGE ===== -->
-
       <div class="hero-grid">
         <div>
           <span class="pill">Gyors · Reszponzív · Ingyenes hosztolás</span>
@@ -234,7 +204,7 @@ Profi adminisztrációt és segítőkész staff csapatot
   <script>
     // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés a navigáció linkekhez
+    // sima görgetés
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href');
@@ -246,47 +216,60 @@ Profi adminisztrációt és segítőkész staff csapatot
       })
     });
 
-    // ---- Egyszerű hero képcsúszka ----
+    // ---- Önjavító hero képcsúszka ----
     (() => {
       const slider = document.querySelector('.hero-slider');
       if(!slider) return;
-
-      const slides = Array.from(slider.querySelectorAll('img'));
       const prevBtn = slider.querySelector('.prev');
       const nextBtn = slider.querySelector('.next');
       const dotsWrap = slider.querySelector('.dots');
-
-      // pontok létrehozása
-      slides.forEach((_, idx) => {
-        const b = document.createElement('button');
-        b.setAttribute('aria-label', `Ugrás a ${idx+1}. képre`);
-        b.addEventListener('click', () => go(idx));
-        dotsWrap.appendChild(b);
-      });
-
-      let i = 0, timer;
-
-      function render(){
-        slides.forEach((img, idx) => img.classList.toggle('active', idx === i));
-        Array.from(dotsWrap.children).forEach((d, idx) => d.classList.toggle('active', idx === i));
+      const howMany = 4; // Gtakep1..Gtakep4
+      const builtSlides = [];
+      function tryLoad(src){
+        return new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(src);
+          img.onerror = () => resolve(null);
+          img.src = src + '?v=' + Date.now();
+        });
       }
-      function go(n){
-        i = (n + slides.length) % slides.length;
-        render();
-        restart();
-      }
-      function next(){ go(i+1); }
-      function prev(){ go(i-1); }
-      function start(){ timer = setInterval(next, 4000); } // 4 mp váltás
-      function stop(){ clearInterval(timer); }
-      function restart(){ stop(); start(); }
-
-      prevBtn.addEventListener('click', prev);
-      nextBtn.addEventListener('click', next);
-      slider.addEventListener('mouseenter', stop);
-      slider.addEventListener('mouseleave', start);
-
-      render(); start();
+      (async () => {
+        for(let n=1; n<=howMany; n++){
+          const base = `images/Gtakep${n}`;
+          let src = await tryLoad(`${base}.jpg`);
+          if(!src) src = await tryLoad(`${base}.png`);
+          if(src){
+            const el = document.createElement('img');
+            el.src = src;
+            el.alt = `Slide ${n}`;
+            slider.insertBefore(el, prevBtn);
+            builtSlides.push(el);
+          }
+        }
+        if(builtSlides.length === 0) return;
+        builtSlides.forEach((_, i) => {
+          const b = document.createElement('button');
+          b.setAttribute('aria-label', `Ugrás a ${i+1}. képre`);
+          b.addEventListener('click', () => go(i));
+          dotsWrap.appendChild(b);
+        });
+        let i = 0, timer;
+        function render(){
+          builtSlides.forEach((img, idx) => img.classList.toggle('active', idx===i));
+          Array.from(dotsWrap.children).forEach((d, idx) => d.classList.toggle('active', idx===i));
+        }
+        function go(n){ i = (n + builtSlides.length) % builtSlides.length; render(); restart(); }
+        function next(){ go(i+1); }
+        function prev(){ go(i-1); }
+        function start(){ timer = setInterval(next, 4000); }
+        function stop(){ clearInterval(timer); }
+        function restart(){ stop(); start(); }
+        prevBtn.addEventListener('click', prev);
+        nextBtn.addEventListener('click', next);
+        slider.addEventListener('mouseenter', stop);
+        slider.addEventListener('mouseleave', start);
+        render(); start();
+      })();
     })();
   </script>
 </body>
