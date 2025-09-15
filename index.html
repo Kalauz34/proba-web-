@@ -23,12 +23,6 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
       background-color:var(--bg);
       color:#eaf0ff;
-
-      /* 🔹 két oldalsó kép beállítása */
-      background-image: url("images/baloldal.png"), url("images/jobboldal.png");
-      background-position: left top, right top;
-      background-repeat: repeat-y, repeat-y;
-      background-size: 200px auto, 200px auto;
     }
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
@@ -70,15 +64,44 @@
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
     }
+
+    /* Oldalsó képpanelek */
+    body{ position: relative; }
+    body::before{
+      content:"";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background: url("images/baloldal.png") center / cover no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after{
+      content:"";
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 100vh;
+      background: url("images/jobboldal.png") center / cover no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+    header, main, footer{ position: relative; z-index: 1; }
+    @media (max-width: 1200px){
+      body::before, body::after{ display:none; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
      <div class="brand">
-  <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
-  <span>Shadow City RP</span>
-</div>
+        <img src="ujlogo.png" alt="Logó" style="height:40px; border-radius:8px;">
+        <span>Shadow City RP</span>
+     </div>
       <nav class="links">
         <a href="#Shadow City röl">Shadow City szerveröl</a>
         <a href="#szolg">Szolgáltatások</a>
@@ -213,6 +236,8 @@ Profi adminisztrációt és segítőkész staff csapatot
   </script>
 </body>
 </html>
+
+
 
 
 
