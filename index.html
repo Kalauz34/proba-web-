@@ -10,14 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #0b1020;
-      --card:#121a31;
+      --bg: #6a09f2;
+      --card:#9c1af3;
       --muted:#99a2c2;
-      --primary:#6ea8fe;
-      --ring: rgba(110,168,254,.45);
+      --primary:#d9d9d9;
+      --ring: rgb(238, 255, 0);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial, "Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:#eaf0ff}
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background-color:var(--bg);
+      color:#eaf0ff;
+    }
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:24px}
@@ -47,6 +53,7 @@
     .muted{color:var(--muted)}
     .cta{display:flex;gap:12px;flex-wrap:wrap}
 
+    form{display:grid;gap:12px}
     input, textarea{width:100%;background:#0e1529;border:1px solid rgba(255,255,255,.08);color:#eaf0ff;border-radius:12px;padding:12px}
     input:focus, textarea:focus{outline:2px solid var(--ring);border-color:transparent}
 
@@ -56,6 +63,95 @@
       .hero-grid{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
+    }
+
+    /* --- Oldalsó képpanelek (NEM ismétlődnek) --- */
+    body{ position: relative; }
+    body::before{
+      content:"";
+      position: fixed;
+      top: 0; left: 0;
+      width: 220px; height: 100vh;
+      background: url("images/baloldal.png") center / cover no-repeat;
+      pointer-events: none; z-index: 0;
+    }
+    body::after{
+      content:"";
+      position: fixed;
+      top: 0; right: 0;
+      width: 220px; height: 100vh;
+      background: url("images/jobboldal.png") center / cover no-repeat;
+      pointer-events: none; z-index: 0;
+    }
+    header, main, footer{ position: relative; z-index: 1; }
+    @media (max-width: 1200px){
+      body::before, body::after{ display:none; }
+    }
+
+    /* --- Slider fix méret, nem ugrál --- */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .hero-slider img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity .8s ease;
+    }
+    .hero-slider img.active { opacity: 1; }
+    .hero-slider .nav{
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(0,0,0,.4); border:none; color:#fff;
+      font-size:20px; padding:8px 12px; cursor:pointer; border-radius:8px; z-index:2;
+    }
+    .hero-slider .prev{ left:10px; }
+    .hero-slider .next{ right:10px; }
+    .hero-slider .dots{
+      position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
+      display:flex; gap:6px; z-index:2;
+    }
+    .hero-slider .dots button{
+      width:10px; height:10px; border-radius:50%; border:none; cursor:pointer;
+      background:rgba(255,255,255,.5);
+    }
+    .hero-slider .dots button.active{ background:#fff; }
+
+    /* --- Feature boxok módosítása (keret/háttér ki, nagyobb szöveg) --- */
+    .feature{
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+    .feature p{
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .feature h3{
+      font-size: 22px;
+      font-weight: 800;
+      margin: 0 0 10px;
+    }
+
+    /* --- Szerver lista kinézete --- */
+    .bullet{
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      gap: 10px;
+      max-width: 800px;
+    }
+    .bullet li{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -68,8 +164,7 @@
       </div>
       <nav class="links">
         <a href="#shadow-city">Shadow City szerverről</a>
-        <a href="#szolg">Szolgáltatások</a>
-        <a href="#referenciak">Referenciák</a>
+        <a href="#szerver">Szerver</a>
         <a href="#kapcsolat">Kapcsolat</a>
         <a class="btn" href="#kapcsolat">Ajánlatot kérek</a>
       </nav>
@@ -77,25 +172,17 @@
   </header>
 
   <main class="container">
+    <!-- HERO (szöveg balra, SLIDER jobbra) -->
     <section class="hero" id="home">
       <div class="hero-grid">
         <div>
           <span class="pill">Gyors · Reszponzív · Ingyenes hosztolás</span>
           <h1 class="h1">Shadow City RP – A te történeted itt kezdődik!
           Üdvözlünk a Shadow City RP világában, ahol a képzelet és a valóság határai összemosódnak!.</h1>
-          <p class="lead">Mit kínálunk?
-Hiteles és élvezetes RP élményt
-
-Aktív és barátságos közösséget
-
-Egyedi script-eket és rendszeresen frissülő tartalmat
-
-Profi adminisztrációt és segítőkész staff csapatot
-
-🚓🚑💼 Legyen szó bűnözésről, rendvédelemről, mentőszolgálatról vagy civil élet formálásáról – nálunk mindenki megtalálja a helyét. A város csak rád vár, hogy felfedezd és kialakítsd a saját történeted.</p>
+          <p class="lead"></p>
           <div class="cta">
             <a class="btn" href="#kapcsolat">Vedd fel velem a kapcsolatot</a>
-            <a href="#referenciak">Nézd meg a mintákat →</a>
+            <a href="#szerver">Nézd meg a részleteket →</a>
           </div>
           <div class="kpis">
             <div class="kpi"><div class="num">100%</div><div class="muted">Mobilbarát</div></div>
@@ -103,14 +190,16 @@ Profi adminisztrációt és segítőkész staff csapatot
             <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
           </div>
         </div>
-        <div class="card">
-          <h2 style="margin:0 0 10px">Gyors bemutatkozás</h2>
-          <p class="muted">Itt mutatkozz be 2-3 mondatban: miben segítesz, kiknek, és mi a különlegességed.</p>
-          <ul>
-            <li>✅ </li>
-            <li>✅ </li>
-            <li>✅ </li>
-          </ul>
+
+        <!-- SLIDER a hero jobb oldalán -->
+        <div class="hero-slider">
+          <img src="images/Gtakep1.jpg" alt="Slide 1" class="active">
+          <img src="images/Gtakep2.jpg" alt="Slide 2">
+          <img src="images/Gtakep3.jpg" alt="Slide 3">
+          <img src="images/Gtakep4.jpg" alt="Slide 4">
+          <button class="nav prev" aria-label="Előző">‹</button>
+          <button class="nav next" aria-label="Következő">›</button>
+          <div class="dots"></div>
         </div>
       </div>
     </section>
@@ -119,74 +208,52 @@ Profi adminisztrációt és segítőkész staff csapatot
       <h2>Shadow City szerverről</h2>
       <div class="grid-2">
         <div class="feature">
-          <h3>Küldetésem</h3>
-          <p class="muted">Írj 3-4 mondatot arról, hogy milyen problémát oldasz meg az ügyfeleidnek.</p>
-        </div>
-        <div class="feature">
-          <h3>Tapasztalat</h3>
-          <p class="muted">Pár konkrétum: évek száma, főbb projektek, iparágak.</p>
+          <h3></h3>
+          <p class="muted">Mit kínálunk? Hiteles és élvezetes RP élményt Aktív és barátságos közösséget Egyedi script-eket és rendszeresen frissülő tartalmat Profi adminisztrációt és segítőkész staff csapatot 🚓🚑💼 Legyen szó bűnözésről, rendvédelemről, mentőszolgálatról vagy civil élet formálásáról – nálunk mindenki megtalálja a helyét. A város csak rád vár, hogy felfedezd és kialakítsd a saját történeted.</p>
         </div>
       </div>
     </section>
 
-    <section id="szolg">
-      <h2>Szolgáltatások</h2>
-      <div class="grid-3">
-        <div class="feature">
-          <h3>Szolgáltatás #1</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-        <div class="feature">
-          <h3>Szolgáltatás #2</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-        <div class="feature">
-          <h3>Szolgáltatás #3</h3>
-          <p class="muted">1-2 mondat, mit kap az ügyfél.</p>
-        </div>
-      </div>
+    <!-- ÚJ: Szerver szekció a szolgáltatások helyett -->
+    <section id="szerver">
+      <h2>Szerver</h2>
+      <ul class="bullet">
+        <li>🛠️ Egyedi scriptek</li>
+        <li>🤝 Barátságos közösség</li>
+        <li>💸 Ingyenes szerver – igazi pénzbe nem kerül</li>
+        <li>⚡ Kérések gyors berakása – akár még aznap, ha olyanról van szó</li>
+      </ul>
     </section>
 
+    <!-- Referenciák részt kérésre eltávolítottam -->
+    <!--
     <section id="referenciak">
-      <h2>Referenciák</h2>
-      <div class="grid-3">
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
-        <div class="feature">
-          <strong>Projekt neve</strong>
-          <p class="muted">Rövid leírás. <a href="#">Élő demo</a></p>
-        </div>
-      </div>
+      ...
     </section>
+    -->
 
-    <!-- Kapcsolat rész frissítve -->
     <section id="kapcsolat" class="card">
-  <h2>Kapcsolat</h2>
-  <p class="muted">
-    <a href="https://discord.gg/rWyaDkXqRr" target="_blank"><img src="images/discord.png" alt="Discord" style="height:20px; vertical-align:middle; margin-right:6px;">
-  Discord csatlakozás
-    
-  </p>
-</section>
-
+      <h2>Kapcsolat</h2>
+      <p class="muted">
+        <a href="https://discord.gg/rWyaDkXqRr" target="_blank">
+          <img src="images/discord.png" alt="Discord" style="height:20px; vertical-align:middle; margin-right:6px;">
+          Discord csatlakozáshoz kattints ide
+        </a>
+      </p>
+    </section>
   </main>
 
   <footer>
-    <div class="container">
-      © <span id="y"></span> 
-    </div>
-  </footer>
-
+  <div class="container" style="display:flex; align-items:center; gap:8px;">
+    © <span id="y"></span> – Shadow City RP
+    <img src="ujlogo.png" alt="Logó" style="height:20px; border-radius:4px;">
+  </div>
+</footer>
+  
   <script>
     // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés a navigáció linkekhez
+    // sima görgetés
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href');
@@ -196,12 +263,42 @@ Profi adminisztrációt és segítőkész staff csapatot
           window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth'});
         }
       })
-    })
+    });
+
+    // --- Slider logika ---
+    const slider = document.querySelector('.hero-slider');
+    const slides = slider.querySelectorAll('img');
+    const prevBtn = slider.querySelector('.prev');
+    const nextBtn = slider.querySelector('.next');
+    const dotsWrap = slider.querySelector('.dots');
+    let index = 0, timer;
+
+    slides.forEach((_, i)=>{
+      const dot = document.createElement('button');
+      dot.addEventListener('click', ()=>go(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function render(){
+      slides.forEach((s, i)=>s.classList.toggle('active', i===index));
+      dotsWrap.querySelectorAll('button').forEach((d,i)=>d.classList.toggle('active', i===index));
+    }
+    function go(n){ index=(n+slides.length)%slides.length; render(); restart();}
+    function next(){go(index+1);}
+    function prev(){go(index-1);}
+    function start(){timer=setInterval(next,4000);}
+    function stop(){clearInterval(timer);}
+    function restart(){stop();start();}
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    render(); start();
   </script>
 </body>
 </html>
-
-
 
 
 
