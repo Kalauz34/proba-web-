@@ -10,20 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #6a09f2;
-      --card:#d21af3;
+      --bg: #0b1020;
+      --card:#121a31;
       --muted:#99a2c2;
-      --primary:#d21af3;
-      --ring: rgb(238, 255, 0);
+      --primary:#6ea8fe;
+      --ring: rgba(110,168,254,.45);
     }
     *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";
-      background-color:var(--bg);
-      color:#eaf0ff;
-    }
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial, "Apple Color Emoji","Segoe UI Emoji";background:var(--bg);color:#eaf0ff}
     a{color:var(--primary);text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px;margin:0 auto;padding:24px}
@@ -53,7 +47,6 @@
     .muted{color:var(--muted)}
     .cta{display:flex;gap:12px;flex-wrap:wrap}
 
-    form{display:grid;gap:12px}
     input, textarea{width:100%;background:#0e1529;border:1px solid rgba(255,255,255,.08);color:#eaf0ff;border-radius:12px;padding:12px}
     input:focus, textarea:focus{outline:2px solid var(--ring);border-color:transparent}
 
@@ -64,62 +57,6 @@
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
     }
-
-    /* --- Oldalsó képpanelek (NEM ismétlődnek) --- */
-    body{ position: relative; }
-    body::before{
-      content:"";
-      position: fixed;
-      top: 0; left: 0;
-      width: 220px; height: 100vh;
-      background: url("images/baloldal.png") center / cover no-repeat;
-      pointer-events: none; z-index: 0;
-    }
-    body::after{
-      content:"";
-      position: fixed;
-      top: 0; right: 0;
-      width: 220px; height: 100vh;
-      background: url("images/jobboldal.png") center / cover no-repeat;
-      pointer-events: none; z-index: 0;
-    }
-    header, main, footer{ position: relative; z-index: 1; }
-    @media (max-width: 1200px){
-      body::before, body::after{ display:none; }
-    }
-
-    /* --- Slider fix méret, nem ugrál --- */
-    .hero-slider {
-      position: relative;
-      width: 100%;
-      height: 400px;              /* magasság */
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 12px;
-    }
-    .hero-slider img {
-      width: 100%; height: 100%;
-      object-fit: cover;          /* képarányt tart, kitölti a keretet */
-      position: absolute; inset: 0;
-      opacity: 0; transition: opacity .8s ease;
-    }
-    .hero-slider img.active { opacity: 1; }
-    .hero-slider .nav{
-      position:absolute; top:50%; transform:translateY(-50%);
-      background:rgba(0,0,0,.4); border:none; color:#fff;
-      font-size:20px; padding:8px 12px; cursor:pointer; border-radius:8px; z-index:2;
-    }
-    .hero-slider .prev{ left:10px; }
-    .hero-slider .next{ right:10px; }
-    .hero-slider .dots{
-      position:absolute; left:50%; bottom:10px; transform:translateX(-50%);
-      display:flex; gap:6px; z-index:2;
-    }
-    .hero-slider .dots button{
-      width:10px; height:10px; border-radius:50%; border:none; cursor:pointer;
-      background:rgba(255,255,255,.5);
-    }
-    .hero-slider .dots button.active{ background:#fff; }
   </style>
 </head>
 <body>
@@ -130,7 +67,7 @@
         <span>Shadow City RP</span>
       </div>
       <nav class="links">
-        <a href="#Shadow City röl">Shadow City szerveröl</a>
+        <a href="#shadow-city">Shadow City szerverről</a>
         <a href="#szolg">Szolgáltatások</a>
         <a href="#referenciak">Referenciák</a>
         <a href="#kapcsolat">Kapcsolat</a>
@@ -140,7 +77,6 @@
   </header>
 
   <main class="container">
-    <!-- HERO (szöveg balra, SLIDER jobbra) -->
     <section class="hero" id="home">
       <div class="hero-grid">
         <div>
@@ -167,22 +103,20 @@ Profi adminisztrációt és segítőkész staff csapatot
             <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
           </div>
         </div>
-
-        <!-- SLIDER a hero jobb oldalán -->
-        <div class="hero-slider">
-          <img src="images/Gtakep1.jpg" alt="Slide 1" class="active">
-          <img src="images/Gtakep2.jpg" alt="Slide 2">
-          <img src="images/Gtakep3.jpg" alt="Slide 3">
-          <img src="images/Gtakep4.jpg" alt="Slide 4">
-          <button class="nav prev" aria-label="Előző">‹</button>
-          <button class="nav next" aria-label="Következő">›</button>
-          <div class="dots"></div>
+        <div class="card">
+          <h2 style="margin:0 0 10px">Gyors bemutatkozás</h2>
+          <p class="muted">Itt mutatkozz be 2-3 mondatban: miben segítesz, kiknek, és mi a különlegességed.</p>
+          <ul>
+            <li>✅ </li>
+            <li>✅ </li>
+            <li>✅ </li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="Shadow City szerveröl">
-      <h2>Rólam</h2>
+    <section id="shadow-city">
+      <h2>Shadow City szerverről</h2>
       <div class="grid-2">
         <div class="feature">
           <h3>Küldetésem</h3>
@@ -231,28 +165,28 @@ Profi adminisztrációt és segítőkész staff csapatot
       </div>
     </section>
 
+    <!-- Kapcsolat rész frissítve -->
     <section id="kapcsolat" class="card">
-      <h2>Kapcsolat</h2>
-      <p class="muted">Küldj üzenetet az alábbi űrlapon vagy írj közvetlenül: <a href="mailto:hello@example.com">hello@example.com</a></p>
-      <form action="mailto:hello@example.com" method="post" enctype="text/plain">
-        <input name="name" placeholder="Neved" required />
-        <input name="email" type="email" placeholder="Email címed" required />
-        <textarea name="message" rows="5" placeholder="Üzeneted"></textarea>
-        <button class="btn" type="submit">Üzenet küldése</button>
-      </form>
-    </section>
+  <h2>Kapcsolat</h2>
+  <p class="muted">
+    <a href="https://discord.gg/rWyaDkXqRr" target="_blank"><img src="images/discord.png" alt="Discord" style="height:20px; vertical-align:middle; margin-right:6px;">
+  Discord csatlakozás
+    
+  </p>
+</section>
+
   </main>
 
   <footer>
     <div class="container">
-      © <span id="y"></span> – Az én brandem. Minden jog fenntartva.
+      © <span id="y"></span> 
     </div>
   </footer>
 
   <script>
     // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés
+    // sima görgetés a navigáció linkekhez
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', e=>{
         const id = a.getAttribute('href');
@@ -262,43 +196,11 @@ Profi adminisztrációt és segítőkész staff csapatot
           window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth'});
         }
       })
-    });
-
-    // --- Slider logika ---
-    const slider = document.querySelector('.hero-slider');
-    const slides = slider.querySelectorAll('img');
-    const prevBtn = slider.querySelector('.prev');
-    const nextBtn = slider.querySelector('.next');
-    const dotsWrap = slider.querySelector('.dots');
-    let index = 0, timer;
-
-    // pontok
-    slides.forEach((_, i)=>{
-      const dot = document.createElement('button');
-      dot.addEventListener('click', ()=>go(i));
-      dotsWrap.appendChild(dot);
-    });
-
-    function render(){
-      slides.forEach((s, i)=>s.classList.toggle('active', i===index));
-      dotsWrap.querySelectorAll('button').forEach((d,i)=>d.classList.toggle('active', i===index));
-    }
-    function go(n){ index=(n+slides.length)%slides.length; render(); restart();}
-    function next(){go(index+1);}
-    function prev(){go(index-1);}
-    function start(){timer=setInterval(next,4000);}
-    function stop(){clearInterval(timer);}
-    function restart(){stop();start();}
-
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-
-    render(); start();
+    })
   </script>
 </body>
 </html>
+
 
 
 
