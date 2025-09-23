@@ -13,7 +13,7 @@
       --bg: #6a09f2;
       --card:#9c1af3;
       --muted:#99a2c2;
-      --primary:#f907d1;
+      --primary:#d9d9d9;
       --ring: rgb(238, 255, 0);
     }
     *{box-sizing:border-box}
@@ -205,12 +205,55 @@
   <footer>
     <div class="container" style="display:flex; align-items:center; gap:8px;">
       © <span id="y"></span> – Shadow City RP
-      <img src="ujlogo.png" alt="Logó" style="height:30px; border-radius:7px;">
+      <img src="ujlogo.png" alt="Logó" style="height:30px; border-radius:4px;">
     </div>
   </footer>
 
   <script>
+    // év
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- Slider logika ---
+    (function(){
+      const slider   = document.querySelector('.hero-slider');
+      if(!slider) return;
+
+      const slides   = Array.from(slider.querySelectorAll('img'));
+      const prevBtn  = slider.querySelector('.prev');
+      const nextBtn  = slider.querySelector('.next');
+      const dotsWrap = slider.querySelector('.dots');
+
+      let index = 0;
+      let timer = null;
+
+      // pöttyök létrehozása
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(b);
+      });
+
+      function render(){
+        slides.forEach((img, i)=> img.classList.toggle('active', i===index));
+        dotsWrap.querySelectorAll('button').forEach((d,i)=> d.classList.toggle('active', i===index));
+      }
+      function go(n){
+        index = (n + slides.length) % slides.length;
+        render(); restart();
+      }
+      function next(){ go(index+1); }
+      function prev(){ go(index-1); }
+      function start(){ timer = setInterval(next, 4000); }
+      function stop(){ clearInterval(timer); timer = null; }
+      function restart(){ stop(); start(); }
+
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+
+      render(); start();
+    })();
   </script>
 </body>
 </html>
