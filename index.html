@@ -65,7 +65,7 @@
       .grid-2{grid-template-columns:1fr}
     }
 
-    /* --- Oldalsó képpanelek (NEM ismétlődnek) --- */
+    /* --- Oldalsó képpanelek --- */
     body{ position: relative; }
     body::before{
       content:"";
@@ -88,7 +88,7 @@
       body::before, body::after{ display:none; }
     }
 
-    /* --- Slider fix méret, nem ugrál --- */
+    /* --- Slider fix méret --- */
     .hero-slider {
       position: relative;
       width: 100%;
@@ -121,37 +121,21 @@
     }
     .hero-slider .dots button.active{ background:#fff; }
 
-    /* --- Feature boxok módosítása (keret/háttér ki, nagyobb szöveg) --- */
-    .feature{
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding: 0;
+    /* --- Shadow City szerverről nagyobb betűméret --- */
+    #shadow-city h2 {
+      font-size: 36px;
     }
-    .feature p{
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    .feature h3{
-      font-size: 22px;
-      font-weight: 800;
-      margin: 0 0 10px;
+    #shadow-city p {
+      font-size: 20px;
     }
 
-    /* --- Szerver lista kinézete --- */
-    .bullet{
-      list-style: none;
-      padding-left: 0;
-      display: grid;
-      gap: 10px;
-      max-width: 800px;
+    /* --- Szerver rész nagyobb betű --- */
+    #szerver h2 {
+      font-size: 36px;
     }
-    .bullet li{
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-weight: 600;
+    #szerver li {
+      font-size: 20px;
+      line-height: 1.8;
     }
   </style>
 </head>
@@ -166,32 +150,19 @@
         <a href="#shadow-city">Shadow City szerverről</a>
         <a href="#szerver">Szerver</a>
         <a href="#kapcsolat">Kapcsolat</a>
-        <a class="btn" href="#kapcsolat">Ajánlatot kérek</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- HERO (szöveg balra, SLIDER jobbra) -->
+    <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-grid">
         <div>
           <span class="pill">Gyors · Reszponzív · Ingyenes hosztolás</span>
           <h1 class="h1">Shadow City RP – A te történeted itt kezdődik!
           Üdvözlünk a Shadow City RP világában, ahol a képzelet és a valóság határai összemosódnak!.</h1>
-          <p class="lead"></p>
-          <div class="cta">
-            <a class="btn" href="#kapcsolat">Vedd fel velem a kapcsolatot</a>
-            <a href="#szerver">Nézd meg a részleteket →</a>
-          </div>
-          <div class="kpis">
-            <div class="kpi"><div class="num">100%</div><div class="muted">Mobilbarát</div></div>
-            <div class="kpi"><div class="num">0 Ft</div><div class="muted">Hosztolás (GitHub Pages)</div></div>
-            <div class="kpi"><div class="num">~5 perc</div><div class="muted">Közzététel</div></div>
-          </div>
         </div>
-
-        <!-- SLIDER a hero jobb oldalán -->
         <div class="hero-slider">
           <img src="images/Gtakep1.jpg" alt="Slide 1" class="active">
           <img src="images/Gtakep2.jpg" alt="Slide 2">
@@ -206,31 +177,22 @@
 
     <section id="shadow-city">
       <h2>Shadow City szerverről</h2>
-      <div class="grid-2">
-        <div class="feature">
-          <h3></h3>
-          <p class="muted">Mit kínálunk? Hiteles és élvezetes RP élményt Aktív és barátságos közösséget Egyedi script-eket és rendszeresen frissülő tartalmat Profi adminisztrációt és segítőkész staff csapatot 🚓🚑💼 Legyen szó bűnözésről, rendvédelemről, mentőszolgálatról vagy civil élet formálásáról – nálunk mindenki megtalálja a helyét. A város csak rád vár, hogy felfedezd és kialakítsd a saját történeted.</p>
-        </div>
-      </div>
+      <p class="muted">
+        Mit kínálunk? Hiteles és élvezetes RP élményt Aktív és barátságos közösséget Egyedi script-eket és rendszeresen frissülő tartalmat Profi adminisztrációt és segítőkész staff csapatot 🚓🚑💼 
+        Legyen szó bűnözésről, rendvédelemről, mentőszolgálatról vagy civil élet formálásáról – nálunk mindenki megtalálja a helyét. 
+        A város csak rád vár, hogy felfedezd és kialakítsd a saját történeted.
+      </p>
     </section>
 
-    <!-- ÚJ: Szerver szekció a szolgáltatások helyett -->
     <section id="szerver">
       <h2>Szerver</h2>
-      <ul class="bullet">
+      <ul>
         <li>🛠️ Egyedi scriptek</li>
         <li>🤝 Barátságos közösség</li>
         <li>💸 Ingyenes szerver – igazi pénzbe nem kerül</li>
-        <li>⚡ Kérések gyors berakása – akár még aznap, ha olyanról van szó</li>
+        <li>⚡ Kérések gyors berakása – akár még aznap</li>
       </ul>
     </section>
-
-    <!-- Referenciák részt kérésre eltávolítottam -->
-    <!--
-    <section id="referenciak">
-      ...
-    </section>
-    -->
 
     <section id="kapcsolat" class="card">
       <h2>Kapcsolat</h2>
@@ -244,61 +206,18 @@
   </main>
 
   <footer>
-  <div class="container" style="display:flex; align-items:center; gap:8px;">
-    © <span id="y"></span> – Shadow City RP
-    <img src="ujlogo.png" alt="Logó" style="height:20px; border-radius:4px;">
-  </div>
-</footer>
-  
+    <div class="container" style="display:flex; align-items:center; gap:8px;">
+      © <span id="y"></span> – Shadow City RP
+      <img src="ujlogo.png" alt="Logó" style="height:30px; border-radius:4px;">
+    </div>
+  </footer>
+
   <script>
-    // év automatikus
     document.getElementById('y').textContent = new Date().getFullYear();
-    // sima görgetés
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        const el = document.querySelector(id);
-        if(el){
-          e.preventDefault();
-          window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth'});
-        }
-      })
-    });
-
-    // --- Slider logika ---
-    const slider = document.querySelector('.hero-slider');
-    const slides = slider.querySelectorAll('img');
-    const prevBtn = slider.querySelector('.prev');
-    const nextBtn = slider.querySelector('.next');
-    const dotsWrap = slider.querySelector('.dots');
-    let index = 0, timer;
-
-    slides.forEach((_, i)=>{
-      const dot = document.createElement('button');
-      dot.addEventListener('click', ()=>go(i));
-      dotsWrap.appendChild(dot);
-    });
-
-    function render(){
-      slides.forEach((s, i)=>s.classList.toggle('active', i===index));
-      dotsWrap.querySelectorAll('button').forEach((d,i)=>d.classList.toggle('active', i===index));
-    }
-    function go(n){ index=(n+slides.length)%slides.length; render(); restart();}
-    function next(){go(index+1);}
-    function prev(){go(index-1);}
-    function start(){timer=setInterval(next,4000);}
-    function stop(){clearInterval(timer);}
-    function restart(){stop();start();}
-
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', start);
-
-    render(); start();
   </script>
 </body>
 </html>
+
 
 
 
