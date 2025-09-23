@@ -13,7 +13,7 @@
       --bg: #6a09f2;
       --card:#9c1af3;
       --muted:#99a2c2;
-      --primary:#d9d9d9;
+      --primary:#f907d1;
       --ring: rgb(238, 255, 0);
     }
     *{box-sizing:border-box}
@@ -122,20 +122,18 @@
     .hero-slider .dots button.active{ background:#fff; }
 
     /* --- Shadow City szerverről nagyobb betűméret --- */
-    #shadow-city h2 {
-      font-size: 36px;
-    }
-    #shadow-city p {
-      font-size: 20px;
-    }
+    #shadow-city h2 { font-size: 36px; }
+    #shadow-city p  { font-size: 20px; }
 
     /* --- Szerver rész nagyobb betű --- */
-    #szerver h2 {
-      font-size: 36px;
-    }
-    #szerver li {
-      font-size: 20px;
-      line-height: 1.8;
+    #szerver h2 { font-size: 36px; }
+    #szerver li { font-size: 20px; line-height: 1.8; }
+
+    /* --- KAPCSOLAT doboz: keret, háttér és árnyék KI --- */
+    #kapcsolat.card{
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
     }
   </style>
 </head>
@@ -159,7 +157,6 @@
     <section class="hero" id="home">
       <div class="hero-grid">
         <div>
-          <!-- A pill eltávolítva -->
           <h1 class="h1">Shadow City RP – A te történeted itt kezdődik!
           Üdvözlünk a Shadow City RP világában, ahol a képzelet és a valóság határai összemosódnak!.</h1>
         </div>
@@ -208,7 +205,7 @@
   <footer>
     <div class="container" style="display:flex; align-items:center; gap:8px;">
       © <span id="y"></span> – Shadow City RP
-      <img src="ujlogo.png" alt="Logó" style="height:30px; border-radius:4px;">
+      <img src="ujlogo.png" alt="Logó" style="height:30px; border-radius:7px;">
     </div>
   </footer>
 
@@ -217,7 +214,6 @@
   </script>
 </body>
 </html>
-
 
 
 
